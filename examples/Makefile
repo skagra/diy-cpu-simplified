@@ -1,11 +1,11 @@
 include ../build-conf/vars.mk
 include ../build-conf/rules.mk
 
-TARGETS = bin/simple.bin bin/board.bin bin/test.bin
+TARGETS = $(BIN)/simple.bin $(BIN)/board.bin $(BIN)/test.bin
 
 all: all-asm
 
-all-asm: bin $(TARGETS)
+all-asm: $(BIN) $(TARGETS)
 
 bin: 
 	mkdir $(BIN)
