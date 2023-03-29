@@ -1,11 +1,11 @@
-SUBDIRS = examples ucode
 
-all: subdirs
+TOPTARGETS := all clean
 
-.PHONY: subdirs $(SUBDIRS)
+SUBDIRS := ucode examples
 
-subdirs: $(SUBDIRS)
+$(TOPTARGETS): $(SUBDIRS)
 
 $(SUBDIRS):
-	$(MAKE) -C $@
+	$(MAKE) -C $@ $(MAKECMDGOALS)
 	
+.PHONY: $(TOPTARGETS) $(SUBDIRS)
