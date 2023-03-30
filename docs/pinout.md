@@ -1,3 +1,9 @@
+<style>
+thead th:empty {
+    border: thin solid red !important;
+    display: none;
+}
+</style>
 # Board Pinouts
 
 * [8 Bit Bus](#8-bit-bus)
