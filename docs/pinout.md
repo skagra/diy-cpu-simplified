@@ -1,5 +1,5 @@
-<div name="top"></div>
 # Board Pinouts
+<div name="top"></div>
 
 * [8 Bit Bus](#8-bit-bus)
 * [Power](#power)
