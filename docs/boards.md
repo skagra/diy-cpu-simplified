@@ -1,6 +1,6 @@
 <div name="top"></div>
 
-# Boards Pinouts
+# 74xx Designs and Physical Implementations
 
 * [8 Bit Bus](#8-bit-bus)
 * [Power](#power)
@@ -16,6 +16,10 @@
 * [MBR](#mbr)
 * [Bus Bridge](#bus-bridge)
 * [Program ROM](#program-rom)
+
+# Top Level CPU Design
+
+![CPU](74xx/CPU.png)
 
 # 8 Bit Bus 
 
@@ -40,7 +44,9 @@ All boards have power connections as follows:
 
 # Registers
 
-A common board is used for `ACC` (Accumulator), `X` (X Register) and `MAR` (Memory Address Register).  [x](designs.md/#74hc-register)
+A common board is used for `ACC` (Accumulator), `X` (X Register) and `MAR` (Memory Address Register).  
+
+![Design](74xx/Register.png)
 
 ## Layout
 
@@ -104,6 +110,8 @@ OUT     -> HIGH
 
 The *Arithmetic Logic Unit* (`ALU`) implements add, subtract, increment and decrement function.
 
+![Design](74xx/ALU.png)
+
 # Layout
 
 |                                 |            |                            |                            |
@@ -156,7 +164,9 @@ CLK                         -> CLOCK_OUT
 
 # P
 
-The status register (`P`) holds up to 4 CPU status flags, currently only a zero `Z` flag is stored.
+The status register (`P`) holds up to 4 CPU status flags, currently only a zero `Z` flag is stored.  The design shows a carry flag being stored but this is not reflected by the current physical implementation.
+
+![Design](74xx/P.png)
 
 ## Layout
 
@@ -196,6 +206,8 @@ OUT0 -> PZ_IN on the Control Unit
 
 The `zero` boards simply test whether an 8 bit input is equal to zero.
 
+![Design](74xx/Zero.png)
+
 There are two slightly different board layouts.
 
 ## Layout 1
@@ -234,6 +246,8 @@ ZOUT   -> INB on the Zero Selection board
 
 The CPU does not currently have a full implementation of a carry flag.  However the `ALU` requires a carry input for correct operations.   The carry board fakes up a carry flag based on the arithmetic operation - subtraction causes carry to be set.  The board also has a passes through the lines defining the arithmetic operation for easy chaining to the ALU.  
 
+![Design](74xx/Carry.png)
+
 ## Layout
 
 |                 |         |
@@ -263,6 +277,8 @@ COUT   -> CIN on the ALU board
 
 The *zero selection* board routes a routes either the zero value from the `CDATA` bus or that from `ALU` to the *status register* (`P`).
 
+![Design](74xx/Zero%20Selection.png)
+
 ## Layout
 
 |                 |         |
@@ -288,6 +304,8 @@ OUT       -> IN0 on the P (status register) board
 # MBR
 
 The Memory Buffer Register (`MBR`) holds data to be written memory to or that has been read from memory.
+
+![Design](74xx/MBR.png)
 
 ## Layout
 
@@ -320,6 +338,8 @@ CLK          -> CLOCK_OUT
 # Bus Bridge
 
 The *Bus Bridge* allows the `CDATA` bus to be connected to the `CADDR` bus.
+
+![Design](74xx/Bus%20Bridge.png)
 
 ## Layout
 
