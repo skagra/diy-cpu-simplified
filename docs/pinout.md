@@ -367,7 +367,7 @@ Unused address pins (`A8`->`A12`) are tied `LOW`, `~WE` (*write enable*) is tied
 ```
 ADDR-BUS -> XADDR
 DATA-Bus -> XDATA
-~OE       -> MEM_OUT_XDATA (inverted) from the Control Unit
+~OE       -> MEM_OUT_XDATA from the Control Unit (the Progam ROM board inverts the value)
 ```
 
 [Top](#top)
