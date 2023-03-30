@@ -26,6 +26,8 @@ All 8-bit bus connections have this layout where `0` => LSB and `7` => MSB.
 | `7` | `6` | `5` | `4` |
 | `3` | `2` | `1` | `0` |
 
+[Top](#top)
+
 # Power
 
 All boards have power connections as follows:
@@ -33,6 +35,8 @@ All boards have power connections as follows:
 |       |       |
 | ----- | ----- |
 | `+5V` | `GND` |
+
+[Top](#top)
 
 # Registers
 
@@ -146,6 +150,7 @@ OP0                         -> ALUOP_0 via the carry board
 OUT                         -> ALUR_OUT_CDATA
 CLK                         -> CLOCK_OUT
 ```
+[Top](#top)
 
 # P
 
@@ -183,6 +188,7 @@ OUT2 -> N/A
 OUT1 -> N/A
 OUT0 -> PZ_IN on the Control Unit
 ```
+[Top](#top)
 
 # Zero
 
@@ -220,6 +226,7 @@ Bus-In -> CDATA
 
 ZOUT   -> INB on the Zero Selection board
 ```
+[Top](#top)
 
 # Carry
 
@@ -248,6 +255,8 @@ OP0OUT -> OP0 on the ALU board
 COUT   -> CIN on the ALU board
 ```
 
+[Top](#top)
+
 # Zero Selection
 
 The *zero selection* board routes a routes either the zero value from the `CDATA` bus or that from `ALU` to the *status register* (`P`).
@@ -272,6 +281,7 @@ INA       -> A-Out-Bus (unbuffered) from ALU
 INB       -> CDATA
 OUT       -> IN0 on the P (status register) board
 ```
+[Top](#top)
 
 # MBR
 
@@ -303,6 +313,7 @@ OUTA         -> MBR_OUT_DATA from the Control Unit
 OUTB         -> MBR_OUT_XDATA from the Control Unit
 CLK          -> CLOCK_OUT
 ```
+[Top](#top)
 
 # Bus Bridge
 
@@ -329,6 +340,7 @@ Bus-Out -> CADDR
 
 OUT     -> CDATA_TO_CADDR from the Control Unit
 ```
+[Top](#top)
 
 # Program ROM
 
@@ -339,6 +351,8 @@ The *Program ROM* holds the machine code program to be executed by the CPU.
 ## Control Lines
 
 ## Connections
+
+[Top](#top)
 
 # Glossary
 
