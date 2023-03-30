@@ -1,3 +1,4 @@
+<div name="top"></div>
 # Board Pinouts
 
 * [8 Bit Bus](#8-bit-bus)
@@ -132,9 +133,9 @@ A-Out-Bus (unbuffered)      -> N/A
 
 B-Out-Bus (unbuffered)      -> N/A
 
-Result-Out-Bus              -> 
+Result-Out-Bus              -> CDATA
 
-Result-Out-Bus (unbuffered) ->
+Result-Out-Bus (unbuffered) -> 
 
 LDA                         -> ALUA_LD_CDATA
 LDB                         -> ALUB_LD_CDATA
@@ -169,17 +170,17 @@ CLK  -> CLOCK_OUT
 LD3  -> N/A
 LD2  -> N/A
 LD1  -> N/A
-LD0  ->
+LD0  -> PZ_LD from the Control Unit
 
 IN3  -> N/A
 IN2  -> N/A
 IN1  -> N/A
-IN0  -> 
+IN0  -> OUT from Zero Selection board
 
 OUT3 -> N/A
 OUT2 -> N/A
 OUT1 -> N/A
-OUT0 ->
+OUT0 -> PZ_IN on the Control Unit
 ```
 
 # Zero
@@ -204,21 +205,19 @@ There are two slightly different board layouts.
 ## Connections #1
 
 ```
-Bus-In  ->
+Bus-In  -> Result-Out-Bus (unbuffered) from the ALU
 
-Bus-Out ->
+Bus-Out -> N/A
 
-ZOUT    ->
+ZOUT    -> INA on the Zero Selection board
 ```
 
 ## Connections #2
 
 ```
-Bus-In  ->
+Bus-In -> CDATA
 
-Bus-Out ->
-
-ZOUT    ->
+ZOUT   -> INB on the Zero Selection board
 ```
 
 # Carry
@@ -249,6 +248,29 @@ COUT   -> CIN on the ALU board
 ```
 
 # Zero Selection
+
+The *zero selection* board routes a routes either the zero value from the `CDATA` bus or that from `ALU` to the *status register* (`P`).
+
+## Layout
+
+|                 |         |
+| --------------- | ------- |
+| `Control-Lines` | `Power` |
+
+## Control Lines
+
+|          |       |       |       |
+| -------- | ----- | ----- | ----- |
+| `OUTSEL` | `INA` | `INB` | `OUT` |
+
+## Connections
+
+```
+OUTSEL    -> Z-SRC_CDATA from Control Unit.  LOW => INA HIGH => INB
+INA       -> A-Out-Bus (unbuffered) from ALU
+INB       -> CDATA
+OUT       -> IN0 on the P (status register) board
+```
 
 # MBR
 
@@ -309,6 +331,8 @@ OUT     -> CDATA_TO_CADDR from the Control Unit
 
 # Program ROM
 
+The *Program ROM* holds the machine code program to be executed by the CPU.
+
 ## Layout
 
 ## Control Lines
@@ -316,3 +340,5 @@ OUT     -> CDATA_TO_CADDR from the Control Unit
 ## Connections
 
 # Glossary
+
+[Top](#top)
