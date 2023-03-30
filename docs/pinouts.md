@@ -1,6 +1,6 @@
 <div name="top"></div>
 
-# Board Pinouts
+# Boards Pinouts
 
 * [8 Bit Bus](#8-bit-bus)
 * [Power](#power)
@@ -40,7 +40,7 @@ All boards have power connections as follows:
 
 # Registers
 
-A common board is used for `ACC` (Accumulator), `X` (X Register) and `MAR` (Memory Address Register).
+A common board is used for `ACC` (Accumulator), `X` (X Register) and `MAR` (Memory Address Register).  [x](designs.md/#74hc-register)
 
 ## Layout
 
