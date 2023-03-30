@@ -98,6 +98,8 @@ LD      -> MAR_LD_CDATA from the Control Unit
 OUT     -> HIGH
 ```
 
+[Top](#top)
+
 # ALU
 
 The *Arithmetic Logic Unit* (`ALU`) implements add, subtract, increment and decrement function.
@@ -344,16 +346,29 @@ OUT     -> CDATA_TO_CADDR from the Control Unit
 
 # Program ROM
 
-The *Program ROM* holds the machine code program to be executed by the CPU.
+The *Program ROM* (an [`AT28C64B`](https://github.com/skagra/diy-cpu-meta/blob/main/docs/datasheets/memory/doc0270.pdf) IC) holds the machine code program to be executed by the CPU.
+
+Unused address pins (`A8`->`A12`) are tied `LOW`, `~WE` (*write enable*) is tied `HIGH`, `~CE` (*chip enable*) is tied `LOW`.
 
 ## Layout
 
+|            |            |                 |
+| ---------- | ---------- | --------------- |
+| `ADDR-Bus` | `DATA-Bus` | `Control-Lines` |
+
 ## Control Lines
+
+|       |
+| ----- |
+| `~OE` |
 
 ## Connections
 
+```
+ADDR-BUS -> XADDR
+DATA-Bus -> XDATA
+~OE       -> MEM_OUT_XDATA (inverted) from the Control Unit
+```
+
 [Top](#top)
 
-# Glossary
-
-[Top](#top)
