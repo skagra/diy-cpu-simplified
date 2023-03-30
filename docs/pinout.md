@@ -19,23 +19,10 @@
 
 All 8-bit bus connections have this layout where `0` => LSB and `7` => MSB.
 
-{| class="wikitable" style="margin:auto"
-|+ Caption text
-|-
-! Header text !! Header text !! Header text
-|-
-| Example || Example || Example
-|-
-| Example || Example || Example
-|-
-| Example || Example || Example
-|}
-
-| {   |
+|     |     |     |     |
 | --- | --- | --- | --- |
 | `7` | `6` | `5` | `4` |
 | `3` | `2` | `1` | `0` |
-| }   |
 
 # Power
 
