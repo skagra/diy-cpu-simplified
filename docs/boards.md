@@ -21,6 +21,8 @@
 
 ![CPU](74xx/CPU.png)
 
+[Top](#top)
+
 # 8 Bit Bus 
 
 All 8-bit bus connections have this layout where `0` => LSB and `7` => MSB.
