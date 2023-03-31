@@ -1961,7 +1961,7 @@
         </entry>
         <entry>
           <string>lastDataFile</string>
-          <file>E:\Development\diy-cpu\simplified\examples\bin\test.bin</file>
+          <file>E:\Development\diy-cpu-simplified\examples\bin\test.bin</file>
         </entry>
         <entry>
           <string>autoReload</string>

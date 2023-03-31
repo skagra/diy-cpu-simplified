@@ -131,3 +131,14 @@ A/OUT/CDATA | X/LD/CDATA | PZ/LD | Z/SRC/CDATA | uP0                // Move accu
 
 .opcode TXA
 X/OUT/CDATA | A/LD/CDATA | PZ/LD | Z/SRC/CDATA | uP0                // Move X into the accumulator
+
+// -----------------------------------------------------------------------------
+// Store operations
+// -----------------------------------------------------------------------------
+.opcode STA
+MBR<-A                                                               // Move A into MBR
+MEM<-MBR | uP0                                                       // Write MBR to memory at MAR                     
+
+.opcode STX
+MBR<-X                                                               // Move X into MBR
+MEM<-MBR | uP0                                                       // Write MBR to memory at MAR

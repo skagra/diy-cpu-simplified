@@ -23,4 +23,6 @@ LDX     A2 A6 B6 AE BE
 TAX	    AA
 TXA	    8A
 
-
+// Store registers
+STA     85 95
+STX     86 96
