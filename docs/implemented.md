@@ -1,38 +1,34 @@
 # Implemented OpCodes
 
-## Done
+# Done
 
-* `ADC`
-    add with carry
-* `BEQ`
-    branch on equal (zero set)
-* `BNE`
-    branch on not equal (zero clear)
-* `DEX`
-    decrement X
-* `INX`
-    increment X
-* `JMP`
-    jump
-* `LDA`
-    load accumulator
-* `LDX`
-    load X
-* `SBC`
-    subtract with carry
-* `TAX`
-    transfer accumulator to X
-* `TXA`
-    transfer X to accumulator
-* `STA`
-    store accumulator
-* `STX`
-    store X
+## Op Codes
 
-## Implement Once RAM is Added
+* `ADC` - Add with carry
+* `BEQ` - Branch on equal (zero set)
+* `BNE` - Branch on not equal (zero clear)
+* `DEX` - Decrement `X`
+* `INX` - Increment `X`
+* `JMP` - Jump 
+* `LDA` - Load accumulator
+* `LDX` - Load `X`
+* `SBC` - Subtract with carry
+* `TAX` - Transfer accumulator to `X`
+* `TXA` - Transfer `X` to accumulator
+* `STA` - Store accumulator
+* `STX` - Store `X`
 
-* `INC`
-    increment
-* `DEC`
-    decrement
+## Addressing Modes
+
+* `ACC` - Accumulator 
+* `IMM` - Immediate    
+* `IMP` - Implied
+* `REL` - Relative (branches)
+* `ZP ` - Zero page     
+* `ZPIDXX` - Zero page index X
+
+## To Do Once RAM is Added
+
+* `INC` - Increment
+* `DEC` - Decrement
     
