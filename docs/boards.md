@@ -160,10 +160,10 @@ The *Arithmetic Logic Unit* (`ALU`) implements add, subtract, increment and decr
 
 ## Control Lines
 
-|       |       |       |       |
-| ----- | ----- | ----- | ----- |
-| `LDA` | `LDB` | `CIN` | *X*   |
-| `OP1` | `OP0` | `OUT` | `CLK` |
+|       |       |       |        |
+| ----- | ----- | ----- | ------ |
+| `LDA` | `LDB` | `CIN` | ~~NC~~ |
+| `OP1` | `OP0` | `OUT` | `CLK`  |
 
 ## Operations
 
@@ -213,10 +213,10 @@ The status register (`P`) holds up to 4 CPU status flags, currently only a zero 
 
 ## Control Lines
 
-|       |       |       |       |     |       |       |       |       |     |        |        |        |        |
-| ----- | ----- | ----- | ----- | --- | ----- | ----- | ----- | ----- | --- | ------ | ------ | ------ | ------ |
-| *X*   | *X*   | *X*   | `CLK` |     | *X*   | *X*   | *X*   | *X*   |     | *X*    | *X*    | *X*    | *X*    |
-| `LD3` | `LD2` | `LD1` | `LD0` |     | `IN3` | `IN2` | `IN1` | `IN0` |     | `OUT3` | `OUT2` | `OUT1` | `OUT0` |
+|        |        |        |       |     |        |        |        |        |     |        |        |        |         |
+| ------ | ------ | ------ | ----- | --- | ------ | ------ | ------ | ------ | --- | ------ | ------ | ------ | ------- |
+| ~~NC~~ | ~~NC~~ | ~~NC~~ | `CLK` |     | ~~NC~~ | ~~NC~~ | ~~NC~~ | ~~NC~~ |     | ~~NC~~ | ~~NC~~ | ~~NC~~ | ~~NC~~* |
+| `LD3`  | `LD2`  | `LD1`  | `LD0` |     | `IN3`  | `IN2`  | `IN1`  | `IN0`  |     | `OUT3` | `OUT2` | `OUT1` | `OUT0`  |
 
 ## Connections
 
@@ -295,7 +295,7 @@ The CPU does not currently have a full implementation of a carry flag.  However 
 
 |          |          |        |
 | -------- | -------- | ------ |
-| `OP1IN`  | `OP0IN`  | *X*    |
+| `OP1IN`  | `OP0IN`  | ~~NC~~ |
 | `OP1OUT` | `OP0OUT` | `COUT` |
 
 ## Connections
