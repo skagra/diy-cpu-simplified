@@ -213,10 +213,10 @@ The status register (`P`) holds up to 4 CPU status flags, currently only a zero 
 
 ## Control Lines
 
-|        |        |        |       |     |        |        |        |        |     |        |        |        |         |
-| ------ | ------ | ------ | ----- | --- | ------ | ------ | ------ | ------ | --- | ------ | ------ | ------ | ------- |
-| ~~NC~~ | ~~NC~~ | ~~NC~~ | `CLK` |     | ~~NC~~ | ~~NC~~ | ~~NC~~ | ~~NC~~ |     | ~~NC~~ | ~~NC~~ | ~~NC~~ | ~~NC~~* |
-| `LD3`  | `LD2`  | `LD1`  | `LD0` |     | `IN3`  | `IN2`  | `IN1`  | `IN0`  |     | `OUT3` | `OUT2` | `OUT1` | `OUT0`  |
+|        |        |        |       |     |        |        |        |        |     |        |        |        |        |
+| ------ | ------ | ------ | ----- | --- | ------ | ------ | ------ | ------ | --- | ------ | ------ | ------ | ------ |
+| ~~NC~~ | ~~NC~~ | ~~NC~~ | `CLK` |     | ~~NC~~ | ~~NC~~ | ~~NC~~ | ~~NC~~ |     | ~~NC~~ | ~~NC~~ | ~~NC~~ | ~~NC~~ |
+| `LD3`  | `LD2`  | `LD1`  | `LD0` |     | `IN3`  | `IN2`  | `IN1`  | `IN0`  |     | `OUT3` | `OUT2` | `OUT1` | `OUT0` |
 
 ## Connections
 
@@ -454,9 +454,9 @@ Values on the `Addr-Bus` define the target display as follows:
 
 ```
 Addr-Bus (2 bits) -> Low two bits of XADDR bus.
-Data-Bus -> XDATA
-ENABLE -> MEM_LD_XDATA
-INTERRUPT -> CLOCK_OUT
+Data-Bus          -> XDATA
+ENABLE            -> MEM_LD_XDATA
+INTERRUPT         -> CLOCK_OUT
 ```
 
 [Top](#top)
