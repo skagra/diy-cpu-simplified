@@ -12,7 +12,7 @@ main:       LDA #$50
 sayhello:   LDX #0
 .next:      LDA hello,X
             BEQ .done
-            STA $F2
+            STA $FE
             INX 
             JMP .next
 .done:      

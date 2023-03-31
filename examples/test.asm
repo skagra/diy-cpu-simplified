@@ -1,5 +1,9 @@
             PROCESSOR 6502
 
+POST1 = $FC
+POST2 = $FD
+MSG = $FE
+
 ; Code
             SEG entry
             ORG $00
@@ -22,8 +26,10 @@ main:
 ; Arithmetic
             LDA #$27
             ADC #$23 ; Result $4A
+            STA POST1
             LDA #$69
             SBC #$33 ; Result $36
+            STA POST2
 
 ; Looping BEQ
             LDX #$05
@@ -38,12 +44,13 @@ main:
             BNE .nextbne
 
 ; Indexed addressing
-            LDX #$00
-.nextfib:   LDA .fib,X
-            BEQ .fibdone
+            LDX #0
+.nexthel:   LDA hello,X
+            BEQ .donehel
+            STA $FE
             INX 
-            JMP .nextfib
-.fibdone:   DC.B    0
+            JMP .nexthel
+.donehel:   DC.B    0
 
-.fib:       DC.B    1, 1, 2, 3, 5, 8, 0  
-
+hello:      DC    "Goodbye World" 
+            DC.B  0
