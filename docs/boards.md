@@ -2,20 +2,55 @@
 
 # 74xx Designs and Physical Implementations
 
-* [8 Bit Bus](#8-bit-bus)
-* [Power](#power)
-* [Registers](#registers)
-  * [Accumulator](#acc)
-  * [X](#x)
-  * [MAR](#mar)
-* [ALU](#alu)
-* [Status Register](#p)
-* [Zero](#zero)
-* [Carry](#carry)
-* [Zero Selection](#zero-selection)
-* [MBR](#mbr)
-* [Bus Bridge](#bus-bridge)
-* [Program ROM](#program-rom)
+- [74xx Designs and Physical Implementations](#74xx-designs-and-physical-implementations)
+- [Top Level CPU Design](#top-level-cpu-design)
+- [8 Bit Bus](#8-bit-bus)
+- [Power](#power)
+- [Registers](#registers)
+  - [Layout](#layout)
+  - [Control lines](#control-lines)
+  - [Connections](#connections)
+    - [ACC](#acc)
+    - [X](#x)
+    - [MAR](#mar)
+- [ALU](#alu)
+- [Layout](#layout-1)
+  - [Control Lines](#control-lines-1)
+  - [Operations](#operations)
+  - [Connections](#connections-1)
+- [P](#p)
+  - [Layout](#layout-2)
+  - [Control Lines](#control-lines-2)
+  - [Connections](#connections-2)
+- [Zero](#zero)
+  - [Layout 1](#layout-1)
+  - [Layout 2](#layout-2)
+  - [Connections #1](#connections-1)
+  - [Connections #2](#connections-2)
+- [Carry](#carry)
+  - [Layout](#layout-3)
+  - [Control Lines](#control-lines-3)
+  - [Connections](#connections-3)
+- [Zero Selection](#zero-selection)
+  - [Layout](#layout-4)
+  - [Control Lines](#control-lines-4)
+  - [Connections](#connections-4)
+- [MBR](#mbr)
+  - [Layout](#layout-5)
+  - [Control Lines](#control-lines-5)
+  - [Connections](#connections-5)
+- [Bus Bridge](#bus-bridge)
+  - [Layout](#layout-6)
+  - [Control Lines](#control-lines-6)
+  - [Connections](#connections-6)
+- [Program ROM](#program-rom)
+  - [Layout](#layout-7)
+  - [Control Lines](#control-lines-7)
+  - [Connections](#connections-7)
+- [Display](#display)
+  - [Control Lines](#control-lines-8)
+  - [Connections](#connections-8)
+
 
 # Top Level CPU Design
 
@@ -390,6 +425,38 @@ Unused address pins (`A8`->`A12`) are tied `LOW`, `~WE` (*write enable*) is tied
 ADDR-BUS -> XADDR
 DATA-Bus -> XDATA
 ~OE       -> MEM_OUT_XDATA from the Control Unit (the Progam ROM board inverts the value)
+```
+
+[Top](#top)
+
+# Display
+
+A simple memory mapped display - able to to display two numerical values and one scrolling textual message, details are available [here](https://github.com/skagra/diy-display).
+
+![Design](74xx/Display.png)
+
+## Control Lines
+
+|                     |            |          |             |
+| ------------------- | ---------- | -------- | ----------- |
+| `Addr-Bus` (2 bits) | `Data-Bus` | `ENABLE` | `INTERRUPT` |
+
+Values on the `Addr-Bus` define the target display as follows:
+
+| Value | Operation       |
+| ----- | --------------- |
+| `00`  | Digital value 1 |
+| `01`  | Digital value 2 |
+| `10`  | Textual message |
+| `11`  | ~~NC~~          |
+
+## Connections
+
+```
+Addr-Bus (2 bits) -> Low two bits of XADDR bus.
+Data-Bus -> XDATA
+ENABLE -> MEM_LD_XDATA
+INTERRUPT -> CLOCK_OUT
 ```
 
 [Top](#top)
