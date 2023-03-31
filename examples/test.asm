@@ -47,10 +47,10 @@ main:
             LDX #0
 .nexthel:   LDA hello,X
             BEQ .donehel
-            STA $FE
+            STA MSG
             INX 
             JMP .nexthel
 .donehel:   DC.B    0
 
-hello:      DC    "Goodbye World" 
+hello:      DC    "Goodbye" 
             DC.B  0
