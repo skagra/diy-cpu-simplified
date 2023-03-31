@@ -1,6 +1,4 @@
-# Implemented OpCodes
-
-# Done
+# Implemented 
 
 ## Op Codes
 
@@ -27,7 +25,9 @@
 * `ZP ` - Zero page     
 * `ZPIDXX` - Zero page index X
 
-## To Do Once RAM is Added
+# To Do 
+
+Once RAM is added.
 
 * `INC` - Increment
 * `DEC` - Decrement
