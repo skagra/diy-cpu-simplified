@@ -52,5 +52,5 @@ main:
             JMP .nexthel
 .donehel:   DC.B    0
 
-hello:      DC    "Goodbye" 
+hello:      DC    "Goodbye World!" 
             DC.B  0
