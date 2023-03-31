@@ -7,49 +7,15 @@
 - [8 Bit Bus](#8-bit-bus)
 - [Power](#power)
 - [Registers](#registers)
-  - [Layout](#layout)
-  - [Control lines](#control-lines)
-  - [Connections](#connections)
-    - [ACC](#acc)
-    - [X](#x)
-    - [MAR](#mar)
 - [ALU](#alu)
-- [Layout](#layout-1)
-  - [Control Lines](#control-lines-1)
-  - [Operations](#operations)
-  - [Connections](#connections-1)
 - [P](#p)
-  - [Layout](#layout-2)
-  - [Control Lines](#control-lines-2)
-  - [Connections](#connections-2)
 - [Zero](#zero)
-  - [Layout 1](#layout-1)
-  - [Layout 2](#layout-2)
-  - [Connections #1](#connections-1)
-  - [Connections #2](#connections-2)
 - [Carry](#carry)
-  - [Layout](#layout-3)
-  - [Control Lines](#control-lines-3)
-  - [Connections](#connections-3)
 - [Zero Selection](#zero-selection)
-  - [Layout](#layout-4)
-  - [Control Lines](#control-lines-4)
-  - [Connections](#connections-4)
 - [MBR](#mbr)
-  - [Layout](#layout-5)
-  - [Control Lines](#control-lines-5)
-  - [Connections](#connections-5)
 - [Bus Bridge](#bus-bridge)
-  - [Layout](#layout-6)
-  - [Control Lines](#control-lines-6)
-  - [Connections](#connections-6)
 - [Program ROM](#program-rom)
-  - [Layout](#layout-7)
-  - [Control Lines](#control-lines-7)
-  - [Connections](#connections-7)
 - [Display](#display)
-  - [Control Lines](#control-lines-8)
-  - [Connections](#connections-8)
 
 
 # Top Level CPU Design
@@ -149,7 +115,7 @@ The *Arithmetic Logic Unit* (`ALU`) implements add, subtract, increment and decr
 
 ![Design](74xx/ALU.png)
 
-# Layout
+## Layout
 
 |                                 |            |                            |                            |
 | ------------------------------- | ---------- | -------------------------- | -------------------------- |
