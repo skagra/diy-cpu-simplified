@@ -24,17 +24,15 @@
     transfer accumulator to X
 * `TXA`
     transfer X to accumulator
+* `STA`
+    store accumulator
+* `STX`
+    store X
 
 ## Implement Once RAM is Added
 
 * `INC`
     increment
-* `STA`
-    store accumulator
-* `STX`
-    store X
-* `STY`
-    store Y
 * `DEC`
     decrement
     
