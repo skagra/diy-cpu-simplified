@@ -29,6 +29,11 @@ MSG = $FE
 ; Main routine
 main:       
 
+; Zero out display values
+            LDA #$00
+            STA POST1
+            STA POST2
+
 ; Register loading
             LDA #$50
             LDX #$22
@@ -61,15 +66,16 @@ main:
 .nextbne:   DEX
             BNE .nextbne
 
-; Indexed addressing
+; Indexed addressing and message out
             LDX #0
-.nexthel:   LDA hello,X
-            BEQ .donehel
+.nextbye:   LDA hello,X
+            BEQ .halt
             STA MSG
             INX 
-            JMP .nexthel
-.donehel:   DC.B    0
+            JMP .nextbye
+; Halt
+.halt:   DC.B    0
 
-hello:      DC    "Goodbye World!" 
+hello:      DC    "Goodbye World! " 
             DC.B  0
 ```
