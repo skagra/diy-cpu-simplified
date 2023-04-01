@@ -56,7 +56,7 @@ main:
             INX 
             JMP .nextbye
 ; Halt
-.halt:   DC.B    0
+.halt:      DC.B    0
 
 hello:      DC    "Goodbye World! " 
             DC.B  0
