@@ -9,5 +9,7 @@ The repository contains:
 * Designs and emulations of the both with [generic components](designs/generic/) and with [`74HC` ICs](designs/74x/).
 * [μcode](ucode) implementing a [subset](docs/implemented.md) of the 6502 instruction set which runs on both the emulated CPU (generic and 74xx) and the physical CPU.  The μcode is assembled using the [μcode-assembler](https://github.com/skagra/diy-cpu-uc-assembler) created for this project. 
 
+Here's a photo of current state of the physical implementation:
 
+![Prototype](docs/Prototype.png)
 
