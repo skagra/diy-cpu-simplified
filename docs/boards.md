@@ -7,12 +7,12 @@
 - [8 Bit Bus](#8-bit-bus)
 - [Power](#power)
 - [Registers](#registers)
-- [ALU](#alu)
-- [P](#p)
+- [Arithmetic and Logic Unit](#arithmetic-and-logic-unit)
+- [Status Register](#status-register)
 - [Zero](#zero)
 - [Carry](#carry)
 - [Zero Selection](#zero-selection)
-- [MBR](#mbr)
+- [Memory Buffer Register](#memory-buffer-register)
 - [Bus Bridge](#bus-bridge)
 - [Program ROM](#program-rom)
 - [Display](#display)
@@ -48,7 +48,7 @@ All boards have power connections as follows:
 
 # Registers
 
-A common board is used for `ACC` (Accumulator), `X` (X Register) and `MAR` (Memory Address Register).  
+A common board is used for the *Accumulator* (`ACC`) , the *X Register* (`X`) and the *Memory Address Register* (`MAR`).  
 
 ![Design](74xx/Register.png)
 
@@ -66,7 +66,7 @@ A common board is used for `ACC` (Accumulator), `X` (X Register) and `MAR` (Memo
 
 ## Connections
 
-### ACC
+### Accumulator
 
 The accumulator.
 
@@ -80,7 +80,7 @@ LD      -> A_LD_CDATA from the Control Unit
 OUT     -> A_OUT_CDATA from the Control Unit
 ```
 
-### X
+### X Register
 
 General purpose `X` register.
 
@@ -94,9 +94,9 @@ LD      -> X_LD_CDATA from the Control Unit
 OUT     -> X_OUT_CDATA from the Control Unit
 ```
 
-### MAR
+### Memory Address Register
 
-The *Memory Address Register* (`MAR` ) holds the address of data to be retrieved by the CPU from memory.
+The *Memory Address Register* (`MAR`) holds the address of data to be retrieved by the CPU from memory.
 
 ```
 Bus-In  -> CADDR
@@ -110,9 +110,9 @@ OUT     -> HIGH
 
 [Top](#top)
 
-# ALU
+# Arithmetic and Logic Unit
 
-The *Arithmetic Logic Unit* (`ALU`) implements add, subtract, increment and decrement function.
+The *Arithmetic and Logic Unit* (`ALU`) implements add, subtract, increment and decrement functions.
 
 ![Design](74xx/ALU.png)
 
@@ -148,27 +148,27 @@ A-Bus-In                    -> CDATA
 
 B-Bus-In                    -> CDATA
 
-A-Out-Bus (unbuffered)      -> N/A
+A-Out-Bus (unbuffered)      -> NC
 
 B-Out-Bus (unbuffered)      -> N/A
 
 Result-Out-Bus              -> CDATA
 
-Result-Out-Bus (unbuffered) -> 
+Result-Out-Bus (unbuffered) -> Zero detection board Bus-In
 
-LDA                         -> ALUA_LD_CDATA
-LDB                         -> ALUB_LD_CDATA
-CIN                         -> COUT from the carry board
-OP1                         -> ALUOP_1 via the carry board
-OP0                         -> ALUOP_0 via the carry board
-OUT                         -> ALUR_OUT_CDATA
+LDA                         -> ALUA_LD_CDATA from the Control Unit
+LDB                         -> ALUB_LD_CDATA from the Control Unit
+CIN                         -> COUT from the Carry board
+OP1                         -> ALUOP_1 via the Carry board
+OP0                         -> ALUOP_0 via the Carry board
+OUT                         -> ALUR_OUT_CDATA from the Control Unit
 CLK                         -> CLOCK_OUT
 ```
 [Top](#top)
 
-# P
+# Status Register
 
-The status register (`P`) holds up to 4 CPU status flags, currently only a zero `Z` flag is stored.  The design shows a carry flag being stored but this is not reflected by the current physical implementation.
+The *Status Register* (`P`) holds up to 4 CPU status flags, currently only a *zero* (`Z`) flag is implemented.  The design shows a carry flag being stored but this is not reflected by the current physical implementation.
 
 ![Design](74xx/P.png)
 
@@ -248,7 +248,7 @@ ZOUT   -> INB on the Zero Selection board
 
 # Carry
 
-The CPU does not currently have a full implementation of a carry flag.  However the `ALU` requires a carry input for correct operations.   The carry board fakes up a carry flag based on the arithmetic operation - subtraction causes carry to be set.  The board also has a passes through the lines defining the arithmetic operation for easy chaining to the ALU.  
+The CPU does not currently have a full implementation of a carry flag.  However the `ALU` requires a carry input.   The carry board fakes up a carry flag based on the arithmetic operation - subtraction causes carry to be set.  The board also passes through the lines defining the arithmetic operation for ease of chaining to the `ALU`.  
 
 ![Design](74xx/Carry.png)
 
@@ -279,7 +279,7 @@ COUT   -> CIN on the ALU board
 
 # Zero Selection
 
-The *zero selection* board routes a routes either the zero value from the `CDATA` bus or that from `ALU` to the *status register* (`P`).
+The *zero selection* board routes the result from either the `CDATA` zero detection board or the `ALU` zero detection board to the *status register* (`P`).
 
 ![Design](74xx/Zero%20Selection.png)
 
@@ -305,9 +305,9 @@ OUT       -> IN0 on the P (status register) board
 ```
 [Top](#top)
 
-# MBR
+# Memory Buffer Register
 
-The Memory Buffer Register (`MBR`) holds data to be written memory to or that has been read from memory.
+The *Memory Buffer Register* (`MBR`) holds data either to be written memory or that which has been read from memory.
 
 ![Design](74xx/MBR.png)
 
@@ -370,9 +370,9 @@ OUT     -> CDATA_TO_CADDR from the Control Unit
 
 # Program ROM
 
-The *Program ROM* (an [`AT28C64B`](https://github.com/skagra/diy-cpu-meta/blob/main/docs/datasheets/memory/doc0270.pdf) IC) holds the machine code program to be executed by the CPU.
+The *Program ROM* (an [`AT28C64B`](https://github.com/skagra/diy-cpu-meta/blob/main/docs/datasheets/memory/doc0270.pdf) IC) holds the machine code program executed by the CPU.
 
-Unused address pins (`A8`->`A12`) are tied `LOW`, `~WE` (*write enable*) is tied `HIGH`, `~CE` (*chip enable*) is tied `LOW`.
+On the ROM, unused address pins (`A8`->`A12`) are tied `LOW`, `~WE` (*write enable*) is tied `HIGH`, `~CE` (*chip enable*) is tied `LOW`.
 
 ## Layout
 
@@ -389,8 +389,10 @@ Unused address pins (`A8`->`A12`) are tied `LOW`, `~WE` (*write enable*) is tied
 ## Connections
 
 ```
-ADDR-BUS -> XADDR
+ADDR-Bus -> XADDR
+
 DATA-Bus -> XDATA
+
 ~OE       -> MEM_OUT_XDATA from the Control Unit (the Progam ROM board inverts the value)
 ```
 
@@ -424,7 +426,7 @@ Values on the `Addr-Bus` define the target display as follows:
 ```
 Addr-Bus (2 bits) -> Low two bits of XADDR bus.
 Data-Bus          -> XDATA
-ENABLE            -> MEM_LD_XDATA
+ENABLE            -> MEM_LD_XDATA from the Control Unit
 INTERRUPT         -> CLOCK_OUT
 ```
 
@@ -438,7 +440,9 @@ The address decoder selects a bank of memory based on an input address, as follo
 | `E0` | `EF` | `0F`  | `CS1` | RAM         |
 | `00` | `DF` | `DF`  | `CS0` | ROM         |
 
-*The above ranges require review.*   This address decoder, as yet, does not exist in hardware which assumes writes are to memory mapped output and reads are from ROM.
+*The above ranges require review.*   
+
+The *address decoder* is, as yet, is not implemented in hardware.  The current prototype assumes all writes are to memory mapped output and all reads are from ROM.
 
 ![Design](74xx/Address%20Decoder.png)
 
