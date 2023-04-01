@@ -16,6 +16,7 @@
 - [Bus Bridge](#bus-bridge)
 - [Program ROM](#program-rom)
 - [Display](#display)
+- [Program Counter](#program-counter)
 
 
 # Top Level CPU Design
@@ -416,6 +417,8 @@ Values on the `Addr-Bus` define the target display as follows:
 | `10`  | Textual message |
 | `11`  | ~~NC~~          |
 
+[Top](#top)
+
 ## Connections
 
 ```
@@ -424,6 +427,30 @@ Data-Bus          -> XDATA
 ENABLE            -> MEM_LD_XDATA
 INTERRUPT         -> CLOCK_OUT
 ```
+
+## Address Decoder
+
+The address decoder selects a bank of memory based on an input address, as follows:
+
+| Low  | Hi   | Range | Pin   | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `F0` | `FF` | `0F`  | `CS2` | I/O         |
+| `E0` | `EF` | `0F`  | `CS1` | RAM         |
+| `00` | `DF` | `DF`  | `CS0` | ROM         |
+
+*The above ranges require review.*   This address decoder, as yet, does not exist in hardware which assumes writes are to memory mapped output and reads are from ROM.
+
+![Design](74xx/Address%20Decoder.png)
+
+[Top](#top)
+
+# Program Counter
+
+The *Program Counter* (`PC`) holds the address of the current machine code instruction.
+
+![Design](74xx/PC.png)
+
+The PC, as yet, does not exist in hardware.  Its function is implemented in the μcontroller based [Control Unit](https://github.com/skagra/diy-cpu-controller).
 
 [Top](#top)
 

@@ -7906,7 +7906,7 @@ attached to WE (latch on rising edge only)
 Then have CS be CS1 AND (MEM/LD/XDATA or MEM/OUT/XDATA)</string>
         </entry>
       </elementAttributes>
-      <pos x="-120" y="-640"/>
+      <pos x="-100" y="-660"/>
     </visualElement>
   </visualElements>
   <wires>
